@@ -22,6 +22,7 @@ const argv = require('yargs')
 
 (async () => {
   const browser = await puppeteer.launch({
+    executablePath: '/usr/bin/google-chrome-stable',
     ignoreHTTPSErrors: true,
     args: ['--allow-running-insecure-content', '--disable-setuid-sandbox', '--no-sandbox', ],
   });
@@ -42,7 +43,7 @@ const argv = require('yargs')
     filename = `${workdir}/T${new Date().getTime()}.png`;
     process.stdout.write('.');
     screenshotPromises.push(page.screenshot({ path: filename, }));
-    await delay(1000);
+    await delay(200);
   }
 
   await delay(1000);
